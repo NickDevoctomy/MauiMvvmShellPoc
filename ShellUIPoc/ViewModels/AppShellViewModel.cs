@@ -45,7 +45,7 @@ public partial class AppShellViewModel : BaseViewModel
         var appShell = Shell.Current as AppShell;
         await page.Dispatcher.DispatchAsync(() =>
         {
-            foreach(var curItem in _currentPageViewModel.MenuItems)
+            foreach (var curItem in _currentPageViewModel.MenuItems)
             {
                 var shellItem = curItem.Parent as ShellItem;
                 appShell.Items.Remove(shellItem);

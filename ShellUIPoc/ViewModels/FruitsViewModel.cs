@@ -24,7 +24,7 @@ public partial class FruitsViewModel : BaseAppShellPageViewModel
     {
         MenuItems.Add(new MenuItem
         {
-            Text = "Apple"
+            Text = "Apple",
         });
         MenuItems.Add(new MenuItem
         {
