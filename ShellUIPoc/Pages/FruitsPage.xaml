@@ -12,5 +12,6 @@
             Text="Fruits!"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
+        <Button Text="Pets" Command="{Binding PetsCommand}" />
     </VerticalStackLayout>
 </pages:BasePage>

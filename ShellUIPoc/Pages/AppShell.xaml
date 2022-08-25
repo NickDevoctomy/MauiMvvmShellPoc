@@ -7,13 +7,31 @@
     xmlns:basepages="clr-namespace:ShellUIPoc.Pages.Base"
     xmlns:pages="clr-namespace:ShellUIPoc.Pages"
     xmlns:vm="clr-namespace:ShellUIPoc.ViewModels"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Shell.FlyoutBehavior="Flyout"
     x:DataType="vm:AppShellViewModel"
     x:TypeArguments="vm:AppShellViewModel">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate pages:FruitsPage}"
-        Route="Fruit" />
+    <Shell.FlyoutHeaderTemplate>
+        <DataTemplate>
+            <Grid BackgroundColor="Black"
+                  HeightRequest="200">
+                <Button
+                    Text="Home"
+                    Command="{Binding HomeCommand}"/>
+            </Grid>
+        </DataTemplate>
+    </Shell.FlyoutHeaderTemplate>
 
+    <ShellContent
+        Title="Fruits"
+        ContentTemplate="{DataTemplate pages:FruitsPage}"
+        Route="Fruits"
+        Shell.FlyoutItemIsVisible="False"/>
+
+    <ShellContent
+        Title="Pets"
+        ContentTemplate="{DataTemplate pages:PetsPage}"
+        Route="Pets"
+        Shell.FlyoutItemIsVisible="False"/>
 </basepages:BaseShell>
