@@ -4,7 +4,7 @@ using ShellUIPoc.ViewModels.Base;
 
 namespace ShellUIPoc.ViewModels;
 
-public partial class FruitsViewModel : BaseViewModel
+public partial class FruitsViewModel : BaseAppShellPageViewModel
 {
     [ObservableProperty]
     public IAsyncRelayCommand petsCommand;
@@ -18,6 +18,26 @@ public partial class FruitsViewModel : BaseViewModel
     {
         var appShellViewModel = Shell.Current.BindingContext as AppShellViewModel;
         await appShellViewModel.OnCurrentPageChangeAsync();
+    }
+
+    public override void OnSetupMenuItems()
+    {
+        MenuItems.Add(new MenuItem
+        {
+            Text = "Apple"
+        });
+        MenuItems.Add(new MenuItem
+        {
+            Text = "Orange"
+        });
+        MenuItems.Add(new MenuItem
+        {
+            Text = "Banana"
+        });
+        MenuItems.Add(new MenuItem
+        {
+            Text = "Pear"
+        });
     }
 
     private async Task PetsCommandAsyncHandler()
