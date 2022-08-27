@@ -14,6 +14,12 @@ public partial class AppShell : BaseShell<AppShellViewModel>
     private void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         var collectionView = sender as CollectionView;
-        collectionView.SelectedItem = null;
+        if(collectionView.SelectedItem != null)
+        {
+            collectionView.SelectedItem = null;
+        }
+        else
+        {
+        }
     }
 }
