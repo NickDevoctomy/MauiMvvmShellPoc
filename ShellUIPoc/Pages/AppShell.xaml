@@ -8,6 +8,7 @@
     xmlns:pages="clr-namespace:ShellUIPoc.Pages"
     xmlns:vm="clr-namespace:ShellUIPoc.ViewModels"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:behaviors="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
     Shell.FlyoutBehavior="Flyout"
     x:DataType="vm:AppShellViewModel"
     x:TypeArguments="vm:AppShellViewModel"
@@ -37,15 +38,19 @@
         Shell.FlyoutItemIsVisible="False"/>
 
     <Shell.FlyoutContent>
-        <CollectionView BindingContext="{x:Reference shell}"
+        <CollectionView x:Name="collectionView"
                         IsGrouped="true"
-                        x:DataType="pages:AppShell"
-                        ItemsSource="{Binding FlyoutItems}"
+                        ItemsSource="{Binding FlyoutItems, Source={Reference shell}}"
                         SelectionMode="Single"
-                        SelectionChanged="CollectionView_SelectionChanged"
-                        PropertyChanged="CollectionView_PropertyChanged">
+                        SelectionChangedCommand="{Binding MenuSelectionChangedCommand}"
+                        SelectionChangedCommandParameter="{Binding Source={Reference collectionView}}">
+            <CollectionView.Behaviors>
+                <behaviors:EventToCommandBehavior EventName="PropertyChanged"
+                                                  Command="{Binding MenuSelectionPropertyChangedCommand}"
+                                                  CommandParameter="{Binding Source={Reference collectionView}}" />
+            </CollectionView.Behaviors>
             <CollectionView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="BaseShellItem">
                     <Grid x:Name="FlyoutItemLayout"
                           HeightRequest="{OnPlatform Default=44, Android=50}"
                           ColumnSpacing="{OnPlatform WinUI=0}"

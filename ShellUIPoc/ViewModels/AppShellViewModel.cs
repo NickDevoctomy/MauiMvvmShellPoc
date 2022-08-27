@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.Maui.Controls;
 using ShellUIPoc.Pages;
 using ShellUIPoc.ViewModels.Base;
 using System.Diagnostics;
@@ -12,11 +13,19 @@ public partial class AppShellViewModel : BaseViewModel
     [ObservableProperty]
     public ICommand homeCommand;
 
+    [ObservableProperty]
+    public ICommand menuSelectionChangedCommand;
+
+    [ObservableProperty]
+    public ICommand menuSelectionPropertyChangedCommand;
+
     private BaseAppShellPageViewModel _currentPageViewModel;
 
     public AppShellViewModel()
     {
         HomeCommand = new Command(HomeCommandhandler);
+        menuSelectionChangedCommand = new Command(MenuSelectionChangedCommandHandler);
+        menuSelectionPropertyChangedCommand = new Command(MenuSelectionPropertyChangedCommandHandler);
     }
 
     public async Task OnCurrentPageChangeAsync()
@@ -77,5 +86,27 @@ public partial class AppShellViewModel : BaseViewModel
     private void HomeCommandhandler()
     {
         Shell.Current.GoToAsync(new ShellNavigationState("//Fruits"));
+    }
+
+    private void MenuSelectionChangedCommandHandler(object obj)
+    {
+        var collectionView = obj as CollectionView;
+        if (collectionView.SelectedItem != null)
+        {
+            collectionView.SelectedItem = null;
+        }
+        else
+        {
+            collectionView.SelectionMode = SelectionMode.None;
+        }
+    }
+
+    private void MenuSelectionPropertyChangedCommandHandler(object obj)
+    {
+        var collectionView = obj as CollectionView;
+        if (collectionView.SelectionMode == SelectionMode.None)
+        {
+            collectionView.SelectionMode = SelectionMode.Single;
+        }
     }
 }
