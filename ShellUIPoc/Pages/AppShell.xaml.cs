@@ -20,6 +20,19 @@ public partial class AppShell : BaseShell<AppShellViewModel>
         }
         else
         {
+            collectionView.SelectionMode = SelectionMode.None;
+        }
+    }
+
+    private void CollectionView_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+    {
+        var collectionView = sender as CollectionView;
+        if (e.PropertyName == "SelectionMode")
+        {
+            if(collectionView.SelectionMode == SelectionMode.None)
+            {
+                collectionView.SelectionMode = SelectionMode.Single;
+            }
         }
     }
 }

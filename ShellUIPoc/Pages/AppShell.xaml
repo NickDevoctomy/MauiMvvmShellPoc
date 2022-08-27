@@ -42,7 +42,8 @@
                         x:DataType="pages:AppShell"
                         ItemsSource="{Binding FlyoutItems}"
                         SelectionMode="Single"
-                        SelectionChanged="CollectionView_SelectionChanged">
+                        SelectionChanged="CollectionView_SelectionChanged"
+                        PropertyChanged="CollectionView_PropertyChanged">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Grid x:Name="FlyoutItemLayout"
