@@ -11,7 +11,7 @@ public partial class FruitsViewModel : BaseAppShellPageViewModel
 
     public FruitsViewModel()
     {
-        petsCommand = new AsyncRelayCommand(PetsCommandAsyncHandler);
+        petsCommand = new AsyncRelayCommand(PetsCommandAsyncHandler, PetsCommandCanExecute);
     }
 
     public override async Task OnAppearingAsync()
@@ -38,6 +38,11 @@ public partial class FruitsViewModel : BaseAppShellPageViewModel
         {
             Text = "Pear"
         });
+    }
+
+    private bool PetsCommandCanExecute()
+    {
+        return true;
     }
 
     private async Task PetsCommandAsyncHandler()

@@ -12,6 +12,8 @@
             Text="Fruits!"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
-        <Button Text="Pets" Command="{Binding PetsCommand}" />
+        <Button Text="Pets" Command="{Binding PetsCommand}" PropertyChanged="Button_PropertyChanged" />
+        <CheckBox></CheckBox>
+        <Button Text="BALLS!" Clicked="Button_Clicked"></Button>
     </VerticalStackLayout>
 </pages:BasePage>
