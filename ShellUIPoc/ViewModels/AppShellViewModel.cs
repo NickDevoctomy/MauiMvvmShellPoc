@@ -3,19 +3,20 @@ using CommunityToolkit.Mvvm.Input;
 using ShellUIPoc.Pages;
 using ShellUIPoc.ViewModels.Base;
 using System.Diagnostics;
+using System.Windows.Input;
 
 namespace ShellUIPoc.ViewModels;
 
 public partial class AppShellViewModel : BaseViewModel
 {
     [ObservableProperty]
-    public IAsyncRelayCommand homeCommand;
+    public ICommand homeCommand;
 
     private BaseAppShellPageViewModel _currentPageViewModel;
 
     public AppShellViewModel()
     {
-        HomeCommand = new AsyncRelayCommand(HomeCommandAsynchandler);
+        HomeCommand = new Command(HomeCommandhandler);
     }
 
     public async Task OnCurrentPageChangeAsync()
@@ -73,8 +74,8 @@ public partial class AppShellViewModel : BaseViewModel
         });
     }
 
-    private async Task HomeCommandAsynchandler()
+    private void HomeCommandhandler()
     {
-        await Shell.Current.GoToAsync(new ShellNavigationState("//Fruits"));
+        Shell.Current.GoToAsync(new ShellNavigationState("//Fruits"));
     }
 }

@@ -50,15 +50,6 @@
                           HeightRequest="{OnPlatform Default=44, Android=50}"
                           ColumnSpacing="{OnPlatform WinUI=0}"
                           RowSpacing="{OnPlatform WinUI=0}">
-                        <!--<VisualStateManager.VisualStateGroups>
-                            <VisualStateGroupList>
-                                <VisualStateGroup x:Name="CommonStates">
-                                    <VisualState x:Name="Normal"/>
-                                    <VisualState x:Name="Focused"/>
-                                    <VisualState x:Name="Selected"/>
-                                </VisualStateGroup>
-                            </VisualStateGroupList>
-                        </VisualStateManager.VisualStateGroups>-->
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>

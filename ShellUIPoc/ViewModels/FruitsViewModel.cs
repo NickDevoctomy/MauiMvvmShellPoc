@@ -1,17 +1,17 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
 using ShellUIPoc.ViewModels.Base;
+using System.Windows.Input;
 
 namespace ShellUIPoc.ViewModels;
 
 public partial class FruitsViewModel : BaseAppShellPageViewModel
 {
     [ObservableProperty]
-    public IAsyncRelayCommand petsCommand;
+    public ICommand petsCommand;
 
     public FruitsViewModel()
     {
-        petsCommand = new AsyncRelayCommand(PetsCommandAsyncHandler, PetsCommandCanExecute);
+        petsCommand = new Command(PetsCommandHandler);
     }
 
     public override async Task OnAppearingAsync()
@@ -40,14 +40,9 @@ public partial class FruitsViewModel : BaseAppShellPageViewModel
         });
     }
 
-    private bool PetsCommandCanExecute()
+    private void PetsCommandHandler()
     {
-        return true;
-    }
-
-    private async Task PetsCommandAsyncHandler()
-    {
-        await Shell.Current.GoToAsync("//Pets");
+        Shell.Current.GoToAsync("//Pets");
     }
 }
 
